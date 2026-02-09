@@ -127,4 +127,58 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
+const modal = document.getElementById('teamModal');
+const closeBtn = document.querySelector('.team-modal-close');
+
+function buildDegreeLine(card) {
+  const parts = [];
+
+  if (card.dataset.year) parts.push(card.dataset.year);
+  if (card.dataset.major) parts.push(card.dataset.major);
+  if (card.dataset.specialization)
+    parts.push(`${card.dataset.specialization} specialization`);
+  if (card.dataset.minor)
+    parts.push(`Minor in ${card.dataset.minor}`);
+
+  return parts.join(" · ");
+}
+
+const qWhy = document.getElementById('q-why');
+const qMemory = document.getElementById('q-memory');
+const qInvolvement = document.getElementById('q-involvement');
+const qExtra = document.getElementById('q-extra');
+
+
+
+document.querySelectorAll('.team-card').forEach(card => {
+  card.addEventListener('click', () => {
+    card.classList.add('flipping');
+
+    setTimeout(() => {
+      document.getElementById('modalImage').src = card.dataset.img || '';
+      document.getElementById('modalName').textContent =
+        card.dataset.name || card.querySelector('.team-name')?.textContent || '';
+      document.getElementById('modalRole').textContent =
+        card.querySelector('.team-role')?.textContent || '';
+      document.getElementById('modalDegree').textContent = buildDegreeLine(card);
+      document.getElementById('modalHometown').textContent =
+        card.dataset.hometown ? `From ${card.dataset.hometown}` : '';
+
+      qWhy.textContent = card.dataset.why || '';
+      qMemory.textContent = card.dataset.memory || '';
+      qInvolvement.textContent = card.dataset.involvement || '';
+      qExtra.textContent = card.dataset.extra || '';
+
+      modal.classList.add('active');
+      card.classList.remove('flipping');
+    }, 300);
+  });
+});
+
+
+closeBtn.onclick = () => modal.classList.remove('active');
+modal.querySelector('.team-modal-backdrop').onclick = () =>
+  modal.classList.remove('active');
+
+
 animate();
