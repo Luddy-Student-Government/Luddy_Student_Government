@@ -150,6 +150,7 @@ html, body {
 
 .nav-links {
   display: flex;
+  flex-wrap:wrap;
   gap: 3rem;
 }
 
@@ -197,6 +198,23 @@ html, body {
 .nav a:hover::after {
   width: 100%;
 }
+
+@media (max-width: 768px) {
+  .nav {
+    padding: 1rem 1.25rem;
+  }
+
+  .nav-inner {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .nav-links {
+    gap: 1.25rem;
+    font-size: 0.9rem;
+  }
+}
+
 
 .section {
   min-height: 100vh;
@@ -259,14 +277,12 @@ html, body {
   right: 0; 
 }
 
-
-
 .event-slide {
   min-width: 20rem;  
   height: 26.25rem;  
   border-radius: 1rem;
   overflow: hidden;
-  scroll-snap-align: start;
+  scroll-snap-align: center;
   position: relative;
   margin: 1rem;
 }
@@ -328,7 +344,12 @@ html, body {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
+  scroll-padding-left: 1rem;
+  overscroll-behavior-x: contain;
 }
+
+
+
 
 .team-track {
   display: grid;
@@ -487,23 +508,36 @@ html, body {
 }
 
 .team-modal-content {
-  position: relative;
+  position: fixed;
+  inset: 5vh 5vw;
+  width: auto;
+  height: auto;
+
+  max-width: 70rem;
+  max-height: 90vh;
+
   margin: auto;
-  top: 50%;
-  transform: translateY(-50%);
-
-  width: min(90vw, 70rem);
-  height: min(80vh, 36rem);
-
   background: rgba(7,35,50,0.85);
-  color:#EEEEF0;
+  color: #EEEEF0;
   border-radius: 2rem;
+
   display: grid;
   grid-template-columns: 1fr 1.3fr;
 
   overflow: hidden;
-  animation: modalIn 0.6s ease forwards;
 }
+
+@media (max-width: 768px) {
+  .team-modal-content {
+    grid-template-columns: 1fr;
+  }
+
+  .team-modal-left {
+    display: none;
+  }
+}
+
+
 
 @keyframes modalIn {
   from {

@@ -69,12 +69,39 @@ window.addEventListener('scroll', () => {
 });
 
 const carousel = document.querySelector('.carousel');
-document.querySelector('.carousel-arrow.left').onclick = () => {
-  carousel.scrollBy({ left: -carousel.clientWidth * 0.8, behavior: 'smooth' });
-};
-document.querySelector('.carousel-arrow.right').onclick = () => {
-  carousel.scrollBy({ left: carousel.clientWidth * 0.8, behavior: 'smooth' });
-};
+
+function scrollCarousel(direction) {
+  const slide = carousel.querySelector('.event-slide');
+  if (!slide) return;
+
+  const slideWidth = slide.offsetWidth + 32; // includes margin
+  carousel.scrollBy({
+    left: direction * slideWidth,
+    behavior: 'smooth'
+  });
+}
+
+document.querySelector('.carousel-arrow.left').onclick = () =>
+  scrollCarousel(-1);
+
+document.querySelector('.carousel-arrow.right').onclick = () =>
+  scrollCarousel(1);
+
+function updateCarouselArrows() {
+  const left = document.querySelector('.carousel-arrow.left');
+  const right = document.querySelector('.carousel-arrow.right');
+
+  left.style.opacity = carousel.scrollLeft <= 5 ? '0.3' : '1';
+  right.style.opacity =
+    carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 5
+      ? '0.3'
+      : '1';
+}
+
+carousel.addEventListener('scroll', updateCarouselArrows);
+window.addEventListener('resize', updateCarouselArrows);
+updateCarouselArrows();
+
 
 
 const sectionObserver = new IntersectionObserver(
