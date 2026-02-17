@@ -307,7 +307,10 @@ html, body {
   justify-content: flex-end;
 }
 
-
+#emailLink{
+  text-decoration: underline;
+  color: #EEEEF0;
+}
 
 #toTop {
   position: fixed;
