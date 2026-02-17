@@ -98,9 +98,21 @@ function updateCarouselArrows() {
       : '1';
 }
 
-carousel.addEventListener('scroll', updateCarouselArrows);
-window.addEventListener('resize', updateCarouselArrows);
-updateCarouselArrows();
+if (carousel) {
+  carousel.addEventListener('scroll', updateCarouselArrows);
+  window.addEventListener('resize', updateCarouselArrows);
+  updateCarouselArrows();
+}
+
+
+const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+if (isMobile) {
+  // stop animation loop on mobile
+  fields.forEach(f => f.el.remove());
+} else {
+  animate();
+}
 
 
 
@@ -122,7 +134,8 @@ const navObserver = new IntersectionObserver(
       );
     });
   },
-  { threshold: 0.6 }
+  // lower threshold so the nav link becomes active sooner when section scrolls into view
+  { threshold: 0.35 }
 );
 sections.forEach(s => navObserver.observe(s));
 
