@@ -123,6 +123,7 @@ html, body {
   left: 50%;
   transform: translateX(-50%);
   font-size: 3rem;
+  font-style:normal;
   color: #EEEEF0;
   cursor: pointer;
   opacity: 0;
