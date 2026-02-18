@@ -126,18 +126,30 @@ const navObserver = new IntersectionObserver(
   entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      navLinks.forEach(link =>
+
+      navLinks.forEach(link => {
         link.classList.toggle(
           'active',
           link.getAttribute('href').slice(1) === entry.target.id
-        )
-      );
+        );
+      });
     });
   },
-  // lower threshold so the nav link becomes active sooner when section scrolls into view
-  { threshold: 0.35 }
+  {
+    threshold: 0,
+    rootMargin: '-40% 0px -55% 0px'
+  }
 );
+
 sections.forEach(s => navObserver.observe(s));
+
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+  });
+});
+
 
 caret.onclick = () =>
   document.getElementById('mission').scrollIntoView({ behavior: 'smooth' });
