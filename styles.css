@@ -41,7 +41,8 @@ html, body {
   position: fixed;
   inset: -30%;
   background: #05080d;
-  filter: blur(8.75rem);
+  transform: translateZ(0);
+  /* filter: blur(8.75rem); */
   z-index: 0;
   will-change: transform, filter;
 }
@@ -73,14 +74,23 @@ html, body {
   }
 }
 
+@supports (-webkit-touch-callout: none) {
+  .field {
+    width: 100vmax;
+    height: 100vmax;
+  }
+}
+
 
 .field {
   position: absolute;
   width: 140vmax;
   height: 140vmax;
+  transform: translateZ(0);
   opacity: 0.55;
-  mix-blend-mode: screen;
-  will-change: transform, filter;
+  filter: blur(8rem);
+  mix-blend-mode: normal;
+  will-change: transform, opacity, filter;
 }
 
 .field.dark {
