@@ -80,6 +80,8 @@ html, body {
   .field {
     display: none !important;
   }
+
+
 }
 
 /* ─── iOS Safari quirk: blur on large fixed elements causes flicker ─── */
@@ -310,12 +312,18 @@ html, body {
   font-style: normal;
 }
 
+
+
 @media (max-width: 768px) {
   .section {
     padding: 6rem 1.25rem;
     /* Override JS-driven opacity on mobile so content is always visible */
     opacity: 1 !important;
     transform: none !important;
+  }
+  .event-slide {
+    width: 80vw;
+    min-width: 80vw;
   }
 }
 

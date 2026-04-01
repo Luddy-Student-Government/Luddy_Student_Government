@@ -1,0 +1,26 @@
+{
+  "name": "luddy_student_government",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test:chrome": "npx playwright test --headed --browser=chromium",
+    "test:firefox": "npx playwright test --headed --browser=firefox",
+    "test:safari": "npx playwright test --headed --browser=webkit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Luddy-Student-Government/Luddy_Student_Government.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Luddy-Student-Government/Luddy_Student_Government/issues"
+  },
+  "homepage": "https://github.com/Luddy-Student-Government/Luddy_Student_Government#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.22.1"
+  }
+}

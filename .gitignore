@@ -1,0 +1,33 @@
+# ─── Node ───
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# ─── Playwright ───
+test-results/
+playwright-report/
+playwright/.cache/
+
+# ─── Tests (ignore ALL tests) ───
+tests/
+*.spec.js
+*.test.js
+
+# ─── Environment variables ───
+.env
+.env.*
+
+# ─── OS files ───
+.DS_Store
+Thumbs.db
+
+# ─── Editor files ───
+.vscode/
+.idea/
+
+# ─── Misc ───
+coverage/
+dist/
+build/
